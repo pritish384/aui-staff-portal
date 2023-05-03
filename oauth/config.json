@@ -1,0 +1,25 @@
+{
+    "servername": "localhost", 
+    "username": "root",
+    "password": "",
+    "database": "staff",
+
+
+    "auth_url": "https://discord.com/api/oauth2/authorize?client_id=1103203445416136744&redirect_uri=http%3A%2F%2Flocalhost%2Faui-staff-portal%2Foauth%2Fsrc%2Fprocess-oauth.php&response_type=code&scope=identify%20guilds%20guilds.members.read",
+
+
+    "bot_token": "MTEwMzIwMzQ0NTQxNjEzNjc0NA.GKwfnF.Qzclc76BK3UdPldxbMlv20kBavq-ADU1UmW_ZA",
+    
+    "client_id": "1103203445416136744",
+    "client_secret": "XiU2g9INGPMzCIQ1c0WT8BDabWs5FIcu",
+    "grant_type": "authorization_code",
+    "redirect_uri": "http://localhost/aui-staff-portal/oauth/src/process-oauth.php",
+    "scope": "identify%20guilds%20guilds.members.read",
+
+    "guild_id": "1074296554149654580"
+
+
+
+
+
+}
