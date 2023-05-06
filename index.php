@@ -1,5 +1,6 @@
 <?php
 session_start();
+include 'oauth/src/verify.php';
 
 if(!$_SESSION['logged_in']){
   header('Location: oauth/src/index.php');
@@ -79,9 +80,9 @@ extract($_SESSION['userData']);
               <span class="info-box-icon bg-info elevation-1"><i class="fas fa-cog"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Staff Members</span>
+                <span class="info-box-text">Staff Code</span>
                 <span class="info-box-number">
-                  10
+                  <?php echo $staff_code; ?>
                 </span>
               </div>
               <!-- /.info-box-content -->
@@ -100,8 +101,8 @@ extract($_SESSION['userData']);
               <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
 
               <div class="info-box-content">
-                <span class="info-box-text">Online Server Members</span>
-                <span class="info-box-number">Not Defined</span>
+                <span class="info-box-text">Staff Role</span>
+                <span class="info-box-number"><?php echo $staff_role; ?></span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -141,6 +142,8 @@ extract($_SESSION['userData']);
 <script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
 <!-- ChartJS -->
 <script src="plugins/chart.js/Chart.min.js"></script>
+
+
 
 <!-- AdminLTE for demo purposes -->
 

@@ -14,6 +14,13 @@
     $casino_navitem = 'nav-item';
   }
 
+  if (in_array($staff_role, $config['bots_staff_roles'])) { 
+    $bots_access_allowed = true;
+  }else{
+    $bots_access_allowed = false;
+  }
+
+
 
 ?> 
  
@@ -89,6 +96,7 @@
             </ul>
           </li>
 
+          <?php if ($bots_access_allowed == true) { ?>
            <li class="<?php echo $casino_navitem ?>">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-robot"></i>
@@ -123,9 +131,13 @@
               </li>
             </ul>
           </li>
+          <?php } ?>
 
   
         </ul>
+        <br>
+        <hr>
+        <a href="./oauth/src/logout.php" class="btn btn-danger btn-block"><i class="fa fa-power-off"></i></a>
       </nav>
       <!-- /.sidebar-menu -->
     </div>

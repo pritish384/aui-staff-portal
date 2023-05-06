@@ -72,7 +72,8 @@ $_SESSION['userData'] = [
     'discord_id'=>$result['id'],
     'avatar_url'=>"https://cdn.discordapp.com/avatars/".$result['id']."/".$result['avatar'].".jpg",
     'discriminator'=>$result['discriminator'],
-    'guilds'=>getUsersGuilds($access_token)
+    'guilds'=>getUsersGuilds($access_token),
+    'member_roles'=>getGuildMemberRoles($config['guild_id'], $result['id'], $bot_token)
 ];
 
 
@@ -100,24 +101,24 @@ function getUsersGuilds($auth_token){
 }
 
 
-// function getGuildMemberRoles($guild_id, $user_id , $bot_token) {
-//     $discord_api_url = "https://discordapp.com/api";
-//     $header = array("Authorization: Bot $bot_token", "Content-Type: application/x-www-form-urlencoded");
-//     $ch = curl_init();
-//     curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
-//     curl_setopt($ch, CURLOPT_URL, $discord_api_url."/guilds/$guild_id/members/$user_id");
-//     curl_setopt($ch, CURLOPT_POST, false);
-//     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-//     curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-//     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-//     $result = curl_exec($ch);
-//     $response_code = curl_getinfo($ch, CURLINFO_RESPONSE_CODE);
-//     if ($response_code != 200) {
-//         throw new Exception("Failed to get member roles: " . $result);
-//     }
-//     $result = json_decode($result, true);
-//     return $result['roles'];
-// }
+function getGuildMemberRoles($guild_id, $user_id , $bot_token) {
+    $discord_api_url = "https://discordapp.com/api";
+    $header = array("Authorization: Bot $bot_token", "Content-Type: application/x-www-form-urlencoded");
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+    curl_setopt($ch, CURLOPT_URL, $discord_api_url."/guilds/$guild_id/members/$user_id");
+    curl_setopt($ch, CURLOPT_POST, false);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+    $result = curl_exec($ch);
+    $response_code = curl_getinfo($ch, CURLINFO_RESPONSE_CODE);
+    if ($response_code != 200) {
+        throw new Exception("Failed to get member roles: " . $result);
+    }
+    $result = json_decode($result, true);
+    return $result['roles'];
+}
 
 
 ?>

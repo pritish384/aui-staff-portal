@@ -8,21 +8,17 @@ if(!$_SESSION['logged_in']){
 }
 extract($_SESSION['userData']);
 
-// if not in $config[''] array, redirect to index.php
-if(!in_array($staff_role, $config['bots_staff_roles'])){
-  header('Location: index.php');
-  exit();
-}
-
 
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AUI Casino Bot</title>
+  <title>AUI Staff Portal</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -36,10 +32,13 @@ if(!in_array($staff_role, $config['bots_staff_roles'])){
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <div class="wrapper">
 
+  <!-- Preloader -->
   <div class="preloader flex-column justify-content-center align-items-center">
     <img src="https://images-ext-1.discordapp.net/external/KBqZkpjDeMredqOw2f0_F2OZvKeXdxm_TYCME2BYBHE/%3Fsize%3D1024/https/cdn.discordapp.com/avatars/1068531863469174876/1ae299e0049d3c9da8780f2f14af9fe8.webp?width=320&height=320" alt="AdminLTELogo" height="60" width="60">
     <p>Among Us India</p>
   </div>
+
+
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-dark">
       <!-- Left navbar links -->
@@ -51,11 +50,11 @@ if(!in_array($staff_role, $config['bots_staff_roles'])){
   
 
     </nav>
-
     <?php
-      $currentPage = 'casino.php';
-      include 'pages/elements/sidebar.php';
+      $currentPage = 'index.php';
+      include 'pages/elements/sidebar.php'; 
     ?>
+
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -64,7 +63,7 @@ if(!in_array($staff_role, $config['bots_staff_roles'])){
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">AUI Casino Bot - General Settings</h1>
+            <h1 class="m-0">AUI Staff Portal</h1>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -74,36 +73,46 @@ if(!in_array($staff_role, $config['bots_staff_roles'])){
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-      <p>Bot Status: <span class="badge badge-success">Online</span></p>
-      <hr>
+        <!-- Info boxes -->
+        <div class="row">
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box">
+              <span class="info-box-icon bg-info elevation-1"><i class="fas fa-cog"></i></span>
 
-      <!-- currency symbol -->
-      <!-- put form in box -->
-        <form>
-          <div class="form-group">
-            <label for="currencySymbol">Currency Symbol</label>
-            <input type="text" class="form-control" id="currencySymbol" placeholder="Enter Currency Symbol">
+              <div class="info-box-content">
+                <span class="info-box-text">Staff Code</span>
+                <span class="info-box-number">
+                  <?php echo $staff_code; ?>
+                </span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
           </div>
-          <div class="form-group">
-            <label for="Starting Balance">Starting Balance</label>
-            <input type="text" class="form-control" id="Starting Balance" placeholder="500">
+          <!-- /.col -->
+          <!-- /.col -->
+
+          <!-- fix for small devices only -->
+          <div class="clearfix hidden-md-up"></div>
+
+          <!-- /.col -->
+          <div class="col-12 col-sm-6 col-md-3">
+            <div class="info-box mb-3">
+              <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
+
+              <div class="info-box-content">
+                <span class="info-box-text">Staff Role</span>
+                <span class="info-box-number"><?php echo $staff_role; ?></span>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
           </div>
-          <!-- form for max cash -->
-          <div class="form-group">
-            <label for="Max Cash">Max Cash</label>
-            <input type="text" class="form-control" id="Max Cash" placeholder="1000">
-          </div>
-          <!-- form for max bank -->
-          <div class="form-group">
-            <label for="Max Bank">Max Bank</label>
-            <input type="text" class="form-control" id="Max Bank" placeholder="1000">
-          </div>
-          <hr>
-          <button type="submit" class="btn btn-danger">Save</button>
-        
-        </form>
-     
-      
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+
     </div>
 
   <!-- Control Sidebar -->
@@ -125,7 +134,7 @@ if(!in_array($staff_role, $config['bots_staff_roles'])){
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.js"></script>
 
-<!-- PAGE plugins -->
+<!-- PAGE PLUGINS -->
 <!-- jQuery Mapael -->
 <script src="plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
 <script src="plugins/raphael/raphael.min.js"></script>
@@ -135,6 +144,7 @@ if(!in_array($staff_role, $config['bots_staff_roles'])){
 <script src="plugins/chart.js/Chart.min.js"></script>
 
 <!-- AdminLTE for demo purposes -->
+
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="dist/js/pages/dashboard.js"></script>
 </body>

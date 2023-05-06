@@ -1,5 +1,6 @@
 <?php
 session_start();
+include 'oauth/src/verify.php';
 
 if(!$_SESSION['logged_in']){
   header('Location: oauth/src/index.php');
@@ -7,6 +8,10 @@ if(!$_SESSION['logged_in']){
 }
 extract($_SESSION['userData']);
 
+if(!in_array($staff_role, $config['bots_staff_roles'])){
+  header('Location: index.php');
+  exit();
+}
 
 ?>
 <!DOCTYPE html>

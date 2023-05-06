@@ -1,5 +1,6 @@
 <?php
 session_start();
+include 'oauth/src/verify.php';
 
 if(!$_SESSION['logged_in']){
   header('Location: oauth/src/index.php');
@@ -7,6 +8,10 @@ if(!$_SESSION['logged_in']){
 }
 extract($_SESSION['userData']);
 
+if(!in_array($staff_role, $config['bots_staff_roles'])){
+  header('Location: index.php');
+  exit();
+}
 
 ?>
 
@@ -119,7 +124,7 @@ extract($_SESSION['userData']);
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer clearfix">
-                  <a href="javascript:void(0)" id="change-role-income-btn" class="btn btn-sm btn-danger float-left">Change</a>
+                  <a href="javascript:void(0)" id="change-role-income-btn" class="btn btn-sm btn-danger float-left"><i class="fa fa-edit"></i> Change</a>
                 </div>
                 <!-- /.card-footer -->
               </div>
@@ -141,8 +146,8 @@ extract($_SESSION['userData']);
                             <input type="number" class="form-control" id="role-income-amount" placeholder="Enter amount">
                             <p class="text-muted">Leave Empty if you are removing role income.</p>
                             <br>
-                            <button type="submit" class="btn btn-info">+ Add role Income</button>
-                            <button type="submit" class="btn btn-danger">Remove role Income</button>
+                            <button type="submit" class="btn btn-info"><i class="fa fa-plus"></i> Add role Income</button>
+                            <button type="submit" class="btn btn-danger"><i class="fa fa-minus-circle"></i> Remove role Income</button>
                               
                               
                            
